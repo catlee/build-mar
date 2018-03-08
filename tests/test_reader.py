@@ -124,6 +124,12 @@ def test_extract_xz(tmpdir):
                 b'pref("app.update.channel", "release");\n')
 
 
+def test_extract_baddecompression(tmpdir):
+    with MarReader(open(TEST_MAR_BZ2, 'rb')) as m:
+        with pytest.raises(ValueError):
+            m.extract(str(tmpdir), decompress='devnull')
+
+
 def test_compression_type_bz2():
     with MarReader(open(TEST_MAR_BZ2, 'rb')) as m:
         assert m.compression_type == 'bz2'
