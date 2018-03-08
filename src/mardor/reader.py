@@ -81,7 +81,7 @@ class MarReader(object):
         """Returns the signature type used in this MAR.
 
         Returns:
-            One of None, 'sha1', or 'sha384'
+            One of None, 'unknown', 'sha1', or 'sha384'
         """
         if not self.mardata.signatures:
             return None
@@ -92,7 +92,7 @@ class MarReader(object):
             elif sig.algorithm_id == 2:
                 return 'sha384'
         else:
-            return None
+            return 'unknown'
 
     def extract_entry(self, e, decompress='auto'):
         """Yield blocks of data for this entry from this MAR file.
