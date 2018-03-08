@@ -53,6 +53,8 @@ class MarWriter(object):
             signing_algorithm (str): one of None, 'sha1', 'sha384'
         """
         self.fileobj = fileobj
+        if signing_algorithm and (fileobj.mode not in ('w+b', 'wb+', 'rb+', 'r+b')):
+            raise ValueError('fileobj must be opened in w+b mode when signing is enabled; mode is {}'.format(fileobj.mode))
         self.data_fileobj = fileobj
         self.entries = []
         self.signature_offset = 8

@@ -206,3 +206,12 @@ def test_xz_writer(tmpdir):
             m.extract(str(tmpdir.join('extracted')))
             assert (tmpdir.join('extracted', 'message.txt').read('rb') ==
                     b'hello world')
+
+
+def test_writer_badmode(tmpdir):
+    private_key, public_key = make_rsa_keypair(2048)
+    mar_p = tmpdir.join('test.mar')
+    with mar_p.open('wb') as f:
+        with pytest.raises(ValueError):
+            MarWriter(f, signing_key=private_key, channel='release',
+                      productversion='99.9', signing_algorithm='sha1')
