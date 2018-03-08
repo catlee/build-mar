@@ -7,6 +7,8 @@ This module provides the MarWriter class which is used to write MAR files.
 """
 import os
 
+import six
+
 from mardor.format import extras_header
 from mardor.format import index_header
 from mardor.format import mar_header
@@ -178,7 +180,7 @@ class MarWriter(object):
             path = path.replace('\\', '/')
 
         e = dict(
-            name=path,
+            name=six.u(path),
             offset=self.last_offset,
             size=size,
             flags=flags,
@@ -297,8 +299,8 @@ class MarWriter(object):
         extras = extras_header.build(dict(
             count=1,
             sections=[dict(
-                channel=channel,
-                productversion=productversion,
+                channel=six.u(channel),
+                productversion=six.u(productversion),
                 size=len(channel) + len(productversion) + 2 + 8,
                 padding='',
             )],
