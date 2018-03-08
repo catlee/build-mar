@@ -136,12 +136,19 @@ def test_compression_type_none(mar_uu):
     with MarReader(mar_uu.open('rb')) as m:
         assert m.compression_type is None
 
-def test_signature_type():
+def test_signature_type_sha1():
     with MarReader(open(TEST_MAR_BZ2, 'rb')) as m:
         assert m.signature_type == 'sha1'
 
-def test_signature_type(mar_uu):
+def test_signature_type_none(mar_uu):
     with MarReader(mar_uu.open('rb')) as m:
         assert m.signature_type is None
 
-# TODO: Test sha384 signed
+def test_signature_type_sha384(mar_sha384):
+    with MarReader(mar_sha384.open('rb')) as m:
+        assert m.signature_type == 'sha384'
+
+def test_signature_type_unknown():
+    with MarReader(open(TEST_MAR_BZ2, 'rb')) as m:
+        m.mardata.signatures.sigs[0].algorithm_id = 99
+        assert m.signature_type == 'unknown'
