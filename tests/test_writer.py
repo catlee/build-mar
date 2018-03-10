@@ -222,3 +222,15 @@ def test_writer_badmode(tmpdir, test_keys):
         with pytest.raises(ValueError):
             MarWriter(f, signing_key=private_key, channel='release',
                       productversion='99.9', signing_algorithm='sha1')
+
+
+def test_empty_mar(tmpdir):
+    mar_p = tmpdir.join('test.mar')
+    with mar_p.open('w+b') as f:
+        with MarWriter(f) as m:
+            pass
+
+    with mar_p.open('rb') as f:
+        with MarReader(f) as m:
+            assert len(m.mardata.index.entries) == 0
+            assert not m.mardata.signatures

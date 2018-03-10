@@ -95,6 +95,13 @@ def _has_sigs(ctx):
     return min(e.offset for e in ctx.index.entries) > 8
 
 
+def data_offset(ctx):
+    if not ctx.index.entries:
+        return ctx.header.index_offset
+    else:
+        return ctx.index.entries[0].offset
+
+
 mar = "mar" / Struct(
     "header" / mar_header,
 
@@ -109,7 +116,6 @@ mar = "mar" / Struct(
     # Only add them if the earliest entry offset is greater than 8
     "signatures" / If(_has_sigs, sigs_header),
     "additional" / If(_has_sigs, extras_header),
-    "data_offset" / Computed(lambda ctx: ctx.index.entries[0].offset),
+    "data_offset" / Computed(data_offset),
     "data_length" / Computed(this.header.index_offset - this.data_offset),
-    "data_header" / Pointer(this.data_offset, Bytes(6)),
 )
