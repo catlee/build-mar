@@ -244,12 +244,13 @@ class MarWriter(object):
             .write_signatures()
         """
         signers = self.get_signers()
+        fake_sigs = {
+            1: b'0' * 256,
+            2: b'0' * 512,
+        }
         signatures = []
         for algo_id, signer in signers:
-            if algo_id == 1:
-                signatures.append((1, b'0' * 256))
-            elif algo_id == 2:
-                signatures.append((2, b'0' * 512))
+            signatures.append((algo_id, fake_sigs[algo_id]))
         return signatures
 
     def calculate_signatures(self):

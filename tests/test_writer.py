@@ -133,6 +133,14 @@ def test_bad_parameters(tmpdir):
         MarWriter(f, channel='bar')
     with pytest.raises(ValueError):
         MarWriter(f, signing_key='SECRET')
+    with pytest.raises(ValueError):
+        MarWriter(f, signing_algorithm='crc')
+    with pytest.raises(ValueError):
+        message_p = tmpdir.join('message.txt')
+        message_p.write('hello world')
+        with MarWriter(f) as m:
+            with tmpdir.as_cwd():
+                m.add_file('message.txt', compress='deflate')
 
 
 @pytest.mark.parametrize('key_size, algo_id', [
