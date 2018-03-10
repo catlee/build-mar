@@ -6,7 +6,6 @@ import bz2
 import pytest
 
 from mardor.reader import MarReader
-from mardor.signing import make_rsa_keypair
 from mardor.writer import MarWriter
 
 
@@ -146,8 +145,8 @@ def test_bad_parameters(tmpdir):
 @pytest.mark.parametrize('key_size, algo_id', [
     (2048, 'sha1'),
     (4096, 'sha384'),])
-def test_signing(tmpdir, key_size, algo_id):
-    private_key, public_key = make_rsa_keypair(key_size)
+def test_signing(tmpdir, key_size, algo_id, test_keys):
+    private_key, public_key = test_keys[key_size]
 
     message_p = tmpdir.join('message.txt')
     message_p.write('hello world')
@@ -216,8 +215,8 @@ def test_xz_writer(tmpdir):
                     b'hello world')
 
 
-def test_writer_badmode(tmpdir):
-    private_key, public_key = make_rsa_keypair(2048)
+def test_writer_badmode(tmpdir, test_keys):
+    private_key, public_key = test_keys[2048]
     mar_p = tmpdir.join('test.mar')
     with mar_p.open('wb') as f:
         with pytest.raises(ValueError):

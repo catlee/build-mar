@@ -143,8 +143,8 @@ def test_main_create(tmpdir):
 
 
 @pytest.mark.parametrize('key_size', [2048, 4096])
-def test_main_create_signed_v1(tmpdir, key_size):
-    priv, pub = make_rsa_keypair(key_size)
+def test_main_create_signed_v1(tmpdir, key_size, test_keys):
+    priv, pub = test_keys[key_size]
     tmpdir.join('hello.txt').write('hello world')
     tmpdir.join('key.pem').write(priv)
     with tmpdir.as_cwd():

@@ -60,3 +60,11 @@ def mar_sha384(tmpdir_factory):
             with tmpdir.as_cwd():
                 m.add('message.txt')
     return mar_p
+
+
+@pytest.fixture(scope='session')
+def test_keys():
+    return {
+        2048: make_rsa_keypair(2048),
+        4096: make_rsa_keypair(4096),
+    }

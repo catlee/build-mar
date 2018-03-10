@@ -9,7 +9,6 @@ import pytest
 import six
 
 from mardor.reader import MarReader
-from mardor.signing import make_rsa_keypair
 
 if six.PY2:
     from backports import lzma
@@ -54,8 +53,8 @@ def test_verify_nosig_extra(mar_cue):
         assert not m.verify(pubkey)
 
 
-def test_verify_wrongkey():
-    private, public = make_rsa_keypair(2048)
+def test_verify_wrongkey(test_keys):
+    private, public = test_keys[2048]
     with MarReader(open(TEST_MAR_BZ2, 'rb')) as m:
         assert not m.verify(public)
 
