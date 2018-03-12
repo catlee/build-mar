@@ -14,7 +14,7 @@ coverage==4.5.1           # via hypothesis, pytest-cov
 cryptography==2.1.4
 enum34==1.1.6
 funcsigs==1.0.2           # via mock, pytest
-hypothesis==3.48.1
+hypothesis==3.49.0
 idna==2.6
 ipaddress==1.0.19
 mock==2.0.0
