@@ -9,7 +9,7 @@ attrs==17.4.0             # via hypothesis, pytest
 backports.lzma==0.0.10 ; python_version < "3.3"
 cffi==1.11.5
 click==6.7
-construct==2.9.37
+construct==2.9.38
 coverage==4.5.1           # via hypothesis, pytest-cov
 cryptography==2.1.4
 enum34==1.1.6
