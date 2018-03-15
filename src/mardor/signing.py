@@ -178,7 +178,7 @@ def make_rsa_keypair(bits):
     private_pem = private_key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.TraditionalOpenSSL,
-        encryption_algorithm=serialization.NoEncryption()
+        encryption_algorithm=serialization.NoEncryption(),
     )
     public_pem = private_key.public_key().public_bytes(
         encoding=serialization.Encoding.PEM,

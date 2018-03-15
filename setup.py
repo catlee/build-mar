@@ -21,7 +21,7 @@ from setuptools import setup
 def read(*names, **kwargs):
     return io.open(
         join(dirname(__file__), *names),
-        encoding=kwargs.get('encoding', 'utf8')
+        encoding=kwargs.get('encoding', 'utf8'),
     ).read()
 
 
@@ -32,7 +32,7 @@ setup(
     description='Package for handling Mozilla Archive files.',
     long_description='%s\n%s' % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
-        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
     ),
     author='Chris AtLee',
     author_email='catlee@mozilla.com',
@@ -81,6 +81,6 @@ setup(
     entry_points={
         'console_scripts': [
             'mar = mardor.cli:main',
-        ]
+        ],
     },
 )
