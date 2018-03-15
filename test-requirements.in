@@ -3,4 +3,5 @@ pytest-cov
 pytest-travis-fold
 hypothesis
 mock
+pytest-random-order
 -rrequirements.txt
