@@ -15,6 +15,7 @@ from mardor.utils import file_iter
 
 
 def get_publickey(keydata):
+    """Load the public key from a PEM encoded string."""
     try:
         key = serialization.load_pem_public_key(
             keydata,
@@ -32,6 +33,7 @@ def get_publickey(keydata):
 
 
 def get_keysize(keydata):
+    """Return the key size of a public key."""
     key = get_publickey(keydata)
     return key.key_size
 
@@ -46,6 +48,7 @@ def get_signature_data(fileobj, filesize):
     Yields:
         blocks of bytes representing the data required to generate or validate
         signatures.
+
     """
     # Read everything except the signature entries
     # The first 8 bytes are covered, as is everything from the beginning
@@ -81,6 +84,7 @@ def make_verifier_v1(public_key, signature):
 
     Returns:
         A cryptography key verifier object
+
     """
     key = get_publickey(public_key)
     if key.key_size != 2048:
@@ -103,6 +107,7 @@ def make_verifier_v2(public_key, signature):
 
     Returns:
         A cryptography key verifier object
+
     """
     key = get_publickey(public_key)
     if key.key_size != 4096:
@@ -123,6 +128,7 @@ def make_signer_v1(private_key):
 
     Returns:
         A cryptography key signer object
+
     """
     key = serialization.load_pem_private_key(
         private_key,
@@ -146,6 +152,7 @@ def make_signer_v2(private_key):
 
     Returns:
         A cryptography key signer object
+
     """
     key = serialization.load_pem_private_key(
         private_key,
@@ -169,6 +176,7 @@ def make_rsa_keypair(bits):
 
     Returns:
         (private_key, public_key) - both as PEM encoded strings
+
     """
     private_key = rsa.generate_private_key(
         public_exponent=65537,

@@ -221,6 +221,7 @@ class MarWriter(object):
         Returns:
             A list of signing objects. This may be an empty list in case no
             signing key was provided.
+
         """
         signers = []
         if self.signing_key and self.signing_algorithm == 'sha1':
@@ -242,6 +243,7 @@ class MarWriter(object):
         Returns:
             Fake signature data suitable for writing to the header with
             .write_signatures()
+
         """
         signers = self.get_signers()
         fake_sigs = {
@@ -258,6 +260,7 @@ class MarWriter(object):
 
         Returns:
             A list of signature tuples: [(algorithm_id, signature_data), ...]
+
         """
         signers = self.get_signers()
         for block in get_signature_data(self.fileobj, self.filesize):
@@ -272,6 +275,7 @@ class MarWriter(object):
         Args:
             signatures (list): list of signature tuples of the form
                 (algorithm_id, signature_data)
+
         """
         self.fileobj.seek(self.signature_offset)
         sig_entries = [dict(algorithm_id=id_,
@@ -297,6 +301,7 @@ class MarWriter(object):
         Args:
             productversion (str): product and version string
             channel (str): channel string
+
         """
         self.fileobj.seek(self.additional_offset)
         extras = extras_header.build(dict(

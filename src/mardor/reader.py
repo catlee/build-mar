@@ -59,10 +59,11 @@ class MarReader(object):
 
     @property
     def compression_type(self):
-        """Returns the latest compresion type used in this MAR.
+        """Return the latest compresion type used in this MAR.
 
         Returns:
             One of None, 'bz2', or 'xz'
+
         """
         best_compression = None
         for e in self.mardata.index.entries:
@@ -78,10 +79,11 @@ class MarReader(object):
 
     @property
     def signature_type(self):
-        """Returns the signature type used in this MAR.
+        """Return the signature type used in this MAR.
 
         Returns:
             One of None, 'unknown', 'sha1', or 'sha384'
+
         """
         if not self.mardata.signatures:
             return None
@@ -107,6 +109,7 @@ class MarReader(object):
 
         Yields:
             Blocks of data for `e`
+
         """
         self.fileobj.seek(e.offset)
         stream = file_iter(self.fileobj)
@@ -153,6 +156,7 @@ class MarReader(object):
         Returns:
             True if the MAR file's signature matches its contents
             False otherwise; this includes cases where there is no signature.
+
         """
         if not self.mardata.signatures or not self.mardata.signatures.sigs:
             # This MAR file can't be verified since it has no signatures

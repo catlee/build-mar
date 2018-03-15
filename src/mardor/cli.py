@@ -72,6 +72,17 @@ def do_extract(marfile, destdir, decompress):
 
 
 def get_keys(keyfiles, signature_type):
+    """Get public keys for the given keyfiles.
+
+    Args:
+        keyfiles: List of filenames with public keys, or :mozilla- prefixed key
+                  names
+        signature_type: one of 'sha1' or 'sha384'
+
+    Returns:
+        List of public keys as strings
+
+    """
     builtin_keys = {
         ('release', 'sha1'): [mardor.mozilla.release1_sha1, mardor.mozilla.release2_sha1],
         ('release', 'sha384'): [mardor.mozilla.release1_sha384, mardor.mozilla.release2_sha384],
@@ -149,7 +160,7 @@ def do_create(marfile, files, compress, productversion=None, channel=None,
 
 
 def main(argv=None):
-    """Main CLI entry point."""
+    """Run the main CLI entry point."""
     parser = build_argparser()
 
     args = parser.parse_args(argv)

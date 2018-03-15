@@ -3,6 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+"""setup module for mar package."""
 from __future__ import absolute_import
 from __future__ import print_function
 
@@ -19,6 +20,7 @@ from setuptools import setup
 
 
 def read(*names, **kwargs):
+    """Read the given path and return its contents."""
     return io.open(
         join(dirname(__file__), *names),
         encoding=kwargs.get('encoding', 'utf8'),
