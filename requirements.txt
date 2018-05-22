@@ -8,8 +8,8 @@ asn1crypto==0.24.0 \
     --hash=sha256:2f1adbb7546ed199e3c90ef23ec95c5cf3585bac7d11fb7eb562a3fe89c64e87 \
     --hash=sha256:9d5c20441baf0cb60a4ac34cc447c6c189024b6b4c6cd7877034f4965c464e49 \
     # via cryptography
-backports.lzma==0.0.10 ; python_version < "3.3" \
-    --hash=sha256:783029053a3b5eb8490fabff29773840dbf378e23a21fde3b720a90eaebeb9b8
+backports.lzma==0.0.11; python_version < "3.3" \
+    --hash=sha256:f6d1664285db415649746cfe76b73876908c45da79fe19493d29d1c940677c32
 cffi==1.11.5 \
     --hash=sha256:151b7eefd035c56b2b2e1eb9963c90c6302dc15fbd8c1c0a83a163ff2c7d7743 \
     --hash=sha256:1553d1e99f035ace1c0544050622b7bc963374a00c467edafac50ad7bd276aef \

@@ -11,8 +11,8 @@ attrs==17.4.0 \
     --hash=sha256:1c7960ccfd6a005cd9f7ba884e6316b5e430a3f1a6c37c5f87d8b43f83b54ec9 \
     --hash=sha256:a17a9573a6f475c99b551c0e0a812707ddda1ec9653bed04c13841404ed6f450 \
     # via hypothesis, pytest
-backports.lzma==0.0.10 ; python_version < "3.3" \
-    --hash=sha256:783029053a3b5eb8490fabff29773840dbf378e23a21fde3b720a90eaebeb9b8
+backports.lzma==0.0.11; python_version < "3.3" \
+    --hash=sha256:f6d1664285db415649746cfe76b73876908c45da79fe19493d29d1c940677c32
 cffi==1.11.5 \
     --hash=sha256:151b7eefd035c56b2b2e1eb9963c90c6302dc15fbd8c1c0a83a163ff2c7d7743 \
     --hash=sha256:1553d1e99f035ace1c0544050622b7bc963374a00c467edafac50ad7bd276aef \
