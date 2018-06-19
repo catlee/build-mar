@@ -107,8 +107,8 @@ funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50 \
     # via mock, pytest
-hypothesis==3.59.0 \
-    --hash=sha256:758c8c5f28bc592614504ae3d770490865b5bdd51d01ed150f208dc698fbba32
+hypothesis==3.59.3 \
+    --hash=sha256:fa369a2d614768adf60417b5182a2ff3fda9fd860f8cbc03e6be0f5b6a9bd015
 idna==2.7 \
     --hash=sha256:156a6814fb5ac1fc6850fb002e0852d56c0c8d2531923a51032d1b70760e186e \
     --hash=sha256:684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16
