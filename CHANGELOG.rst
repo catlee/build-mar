@@ -5,6 +5,7 @@ Changelog
 ------------------
 * Support extracting mar hash for external signing, and injecting signatures
   into unsigned files.
+* File modes are set on extraction
 
 2.3.0 (2018-07-23)
 ------------------
