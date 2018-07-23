@@ -1,11 +1,18 @@
 
 Changelog
 =========
-2.3.0 (2018-04-12)
+2.4.0 (1900-01-01)
+------------------
+* Support extracting mar hash for external signing, and injecting signatures
+  into unsigned files.
+
+2.3.0 (2018-07-23)
 ------------------
 * Remove deprecated usage of signature generation and verification in
   cryptography library. This changes the type of object returned by the
   make_signer and make_verifier functions.
+
+* Support MAR files without additional sections
 
 2.2.3 (2018-01-18)
 ------------------
