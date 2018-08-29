@@ -5,7 +5,15 @@ Changelog
 ------------------
 * Support extracting mar hash for external signing, and injecting signatures
   into unsigned files.
-* File modes are set on extraction
+* File modes are set properly on extraction
+* Added helper productinfo property to MarReader to allow convenient access to
+  the product information information
+* Internal signing API changed:
+  * Got rid of Verifier/Signer classes
+* Internal API for the mar format changed:
+  * offets added for the beginning and end of signature and additional blocks
+  * correctly represent additional section padding
+
 
 2.3.0 (2018-07-23)
 ------------------
