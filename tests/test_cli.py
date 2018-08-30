@@ -43,13 +43,19 @@ def test_create(tmpdir):
 
 def test_verify(tmpdir):
     assert cli.do_verify(TEST_MAR_BZ2, [':mozilla-release'])
+    assert cli.do_verify(TEST_MAR_BZ2)
+
     with raises(SystemExit):
         assert not cli.do_verify(TEST_MAR_BZ2, [':mozilla-nightly'])
     with raises(SystemExit):
         assert not cli.do_verify(TEST_MAR_BZ2, [':mozilla-dep'])
 
-    with raises(ValueError):
+    with raises(SystemExit):
         cli.do_verify(TEST_MAR_BZ2, [':mozilla-foo'])
+
+    with raises(SystemExit):
+        cli.do_verify(__file__)
+
 
     keyfile = tmpdir.join('release.pem')
     keyfile.write(mozilla.release1_sha1)
@@ -84,15 +90,14 @@ def test_list_noextra(tmpdir):
 
 def test_main_verify():
     args = ['-v', TEST_MAR_BZ2, '-k', ':mozilla-release']
-    cli.main(args)
+    assert cli.main(args) is None
 
     with raises(SystemExit):
         args = ['-v', TEST_MAR_BZ2, '-k', ':mozilla-nightly']
         cli.main(args)
 
-    with raises(SystemExit):
-        args = ['-v', TEST_MAR_BZ2]
-        cli.main(args)
+    args = ['-v', TEST_MAR_BZ2]
+    assert cli.main(args) is None
 
 
 def test_main_list():
