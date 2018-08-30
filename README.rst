@@ -37,23 +37,23 @@ Overview
 
 .. |version| image:: https://img.shields.io/pypi/v/mar.svg?style=flat
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/mar
+    :target: https://pypi.org/project/mar/
 
 .. |downloads| image:: https://img.shields.io/pypi/dm/mar.svg?style=flat
     :alt: PyPI Package monthly downloads
-    :target: https://pypi.python.org/pypi/mar
+    :target: https://pypi.org/project/mar/
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/mar.svg?style=flat
     :alt: PyPI Wheel
-    :target: https://pypi.python.org/pypi/mar
+    :target: https://pypi.org/project/mar/
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/mar.svg?style=flat
     :alt: Supported versions
-    :target: https://pypi.python.org/pypi/mar
+    :target: https://pypi.org/project/mar/
 
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/mar.svg?style=flat
     :alt: Supported implementations
-    :target: https://pypi.python.org/pypi/mar
+    :target: https://pypi.org/project/mar/
 
 
 .. end-badges
@@ -115,20 +115,3 @@ Development
 To run the all tests run::
 
     tox
-
-Note, to combine the coverage data from all the tox environments run:
-
-.. list-table::
-    :widths: 10 90
-    :stub-columns: 1
-
-    - - Windows
-      - ::
-
-            set PYTEST_ADDOPTS=--cov-append
-            tox
-
-    - - Other
-      - ::
-
-            PYTEST_ADDOPTS=--cov-append tox
