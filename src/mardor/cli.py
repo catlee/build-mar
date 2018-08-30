@@ -11,6 +11,7 @@ from argparse import ArgumentParser
 
 import mardor.mozilla
 from mardor.reader import MarReader
+from mardor.signing import format_hash
 from mardor.signing import get_keysize
 from mardor.writer import MarWriter
 from mardor.writer import add_signature_block
@@ -63,6 +64,8 @@ def build_argparser():
 
     signing_group = parser.add_argument_group('Sign a MAR file')
     signing_group.add_argument('--hash', help='output hash for signing', choices=('sha1', 'sha384'))
+    signing_group.add_argument('--asn1', help='format hash as an ASN1 DigestInfo block',
+                               default=False, action='store_true')
     signing_group.add_argument('--add-signature', help='inject signature', nargs=3,
                                metavar=('input', 'output', 'signature'))
 
@@ -195,18 +198,20 @@ def do_create(marfile, files, compress, productversion=None, channel=None,
                 m.add(f, compress=compress)
 
 
-def do_hash(hash_algo, marfile):
+def do_hash(hash_algo, marfile, asn1=False):
     """Output the hash for this MAR file."""
     # Add a dummy signature into a temporary file
     dst = tempfile.TemporaryFile()
-    with open(marfile, 'rb') as f, MarReader(f) as m:
-        add_signature_block(m, dst, hash_algo)
+    with open(marfile, 'rb') as f:
+        add_signature_block(f, dst, hash_algo)
 
     dst.seek(0)
 
     with MarReader(dst) as m:
         hashes = m.calculate_hashes()
         h = hashes[0][1]
+        if asn1:
+            h = format_hash(h, hash_algo)
         print(h, end='')
 
 
@@ -302,7 +307,7 @@ def main(argv=None):
                   signing_key=signing_key, signing_algorithm=signing_algorithm)
 
     elif args.hash:
-        do_hash(args.hash, args.files[0])
+        do_hash(args.hash, args.files[0], args.asn1)
 
     elif args.add_signature:
         do_add_signature(args.add_signature[0], args.add_signature[1], args.add_signature[2])
