@@ -146,6 +146,32 @@ class MarReader(object):
                 write_to_file(self.extract_entry(e, decompress), f)
                 os.chmod(entry_path, e.flags)
 
+    def get_errors(self):
+        """Verify that this MAR file is well formed.
+
+        Returns:
+            A string describing any errors in this MAR file
+            None if this MAR file appears well formed.
+
+        """
+        if self.mardata.signatures:
+            for s in self.mardata.signatures.sigs:
+                if s.algorithm_id not in (1, 2):
+                    return "Unknown signature algorithm: {}".format(s.algorithm_id)
+        if self.mardata.additional:
+            for s in self.mardata.additional.sections:
+                if s.id not in (1,):
+                    return "Unknown extra section type: {}".format(s.id)
+        # Check that all file contents are within the mar file
+        data_offset = self.mardata.data_offset
+        data_length = self.mardata.data_length
+        for e in self.mardata.index.entries:
+            # Check that the file is in range
+            if e.offset < data_offset:
+                return "Entry '{}' starts before data block".format(e.name)
+            if e.offset + e.size > data_length + data_offset:
+                return "Entry '{}' ends past data block".format(e.name)
+
     def verify(self, verify_key):
         """Verify that this MAR file has a valid signature.
 

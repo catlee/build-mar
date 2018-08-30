@@ -116,6 +116,14 @@ def do_verify(marfile, keyfiles=None):
     try:
         with open(marfile, 'rb') as f:
             with MarReader(f) as m:
+                # Check various parts of the mar file
+                # e.g. signature algorithms and additional block sections
+                errors = m.get_errors()
+                if errors:
+                    print("File is not well formed: {}".format(errors))
+                    sys.exit(1)
+                    return False
+
                 if keyfiles:
                     try:
                         keys = get_keys(keyfiles, m.signature_type)
@@ -136,8 +144,7 @@ def do_verify(marfile, keyfiles=None):
                     return True
 
     except Exception as e:
-        print(e)
-        print("Error opening or parsing file")
+        print("Error opening or parsing file: {}".format(e))
         sys.exit(1)
         return False
 
