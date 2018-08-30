@@ -111,17 +111,35 @@ def get_keys(keyfiles, signature_type):
     return keys
 
 
-def do_verify(marfile, keyfiles):
+def do_verify(marfile, keyfiles=None):
     """Verify the MAR file."""
-    with open(marfile, 'rb') as f:
-        with MarReader(f) as m:
-            keys = get_keys(keyfiles, m.signature_type)
-            if any(m.verify(key) for key in keys):
-                print("Verification OK")
-                return True
-            else:
-                print("Verification failed")
-                sys.exit(1)
+    try:
+        with open(marfile, 'rb') as f:
+            with MarReader(f) as m:
+                if keyfiles:
+                    try:
+                        keys = get_keys(keyfiles, m.signature_type)
+                    except ValueError as e:
+                        print(e)
+                        sys.exit(1)
+                        return False
+
+                    if any(m.verify(key) for key in keys):
+                        print("Verification OK")
+                        return True
+                    else:
+                        print("Verification failed")
+                        sys.exit(1)
+                        return False
+                else:
+                    print("Verification OK")
+                    return True
+
+    except Exception as e:
+        print(e)
+        print("Error opening or parsing file")
+        sys.exit(1)
+        return False
 
 
 def do_list(marfile, detailed=False):
@@ -210,9 +228,6 @@ def check_args(parser, args):
 
     if args.create and not args.files:
         parser.error("Must specify at least one file to add to marfile")
-
-    if args.verify and not args.keyfiles:
-        parser.error("Must specify a key file when verifying")
 
     if args.extract and args.compression not in (None, 'bz2', 'xz', 'auto'):
         parser.error('Unsupported compression type')

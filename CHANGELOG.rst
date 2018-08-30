@@ -1,10 +1,10 @@
-
 Changelog
 =========
-2.4.0 (1900-01-01)
+3.0.0 (2018-08-30)
 ------------------
 * Support extracting mar hash for external signing, and injecting signatures
   into unsigned files.
+* `mar -v` can now verify that unsigned mar files are well formed
 * File modes are set properly on extraction
 * Added helper productinfo property to MarReader to allow convenient access to
   the product information information
