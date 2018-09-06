@@ -2,6 +2,7 @@
 """Utility for managing mar files."""
 from __future__ import print_function
 
+import base64
 import logging
 import os
 import sys
@@ -125,7 +126,6 @@ def do_verify(marfile, keyfiles=None):
                 if errors:
                     print("File is not well formed: {}".format(errors))
                     sys.exit(1)
-                    return False
 
                 if keyfiles:
                     try:
@@ -133,7 +133,6 @@ def do_verify(marfile, keyfiles=None):
                     except ValueError as e:
                         print(e)
                         sys.exit(1)
-                        return False
 
                     if any(m.verify(key) for key in keys):
                         print("Verification OK")
@@ -141,7 +140,6 @@ def do_verify(marfile, keyfiles=None):
                     else:
                         print("Verification failed")
                         sys.exit(1)
-                        return False
                 else:
                     print("Verification OK")
                     return True
@@ -149,7 +147,6 @@ def do_verify(marfile, keyfiles=None):
     except Exception as e:
         print("Error opening or parsing file: {}".format(e))
         sys.exit(1)
-        return False
 
 
 def do_list(marfile, detailed=False):
@@ -212,7 +209,8 @@ def do_hash(hash_algo, marfile, asn1=False):
         h = hashes[0][1]
         if asn1:
             h = format_hash(h, hash_algo)
-        print(h, end='')
+
+        print(base64.b64encode(h).decode('ascii'))
 
 
 def do_add_signature(input_file, output_file, signature_file):
@@ -241,10 +239,10 @@ def check_args(parser, args):
     if args.create and not args.files:
         parser.error("Must specify at least one file to add to marfile")
 
-    if args.extract and args.compression not in (None, 'bz2', 'xz', 'auto'):
+    if args.extract and args.compression not in (None, 'bz2', 'xz', 'auto'):  # pragma: nocover
         parser.error('Unsupported compression type')
 
-    if args.create and args.compression not in (None, 'bz2', 'xz'):
+    if args.create and args.compression not in (None, 'bz2', 'xz'):  # pragma: nocover
         parser.error('Unsupported compression type')
 
     if args.hash and len(args.files) != 1:
