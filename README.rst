@@ -10,8 +10,7 @@ Overview
     * - docs
       - |docs|
     * - tests
-      - | |travis| |requires|
-        | |coveralls| |codecov|
+      - | |travis| |codecov|
     * - package
       - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
 
@@ -22,14 +21,6 @@ Overview
 .. |travis| image:: https://travis-ci.org/mozilla/build-mar.svg?branch=master
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/mozilla/build-mar
-
-.. |requires| image:: https://requires.io/github/mozilla/build-mar/requirements.svg?branch=master
-    :alt: Requirements Status
-    :target: https://requires.io/github/mozilla/build-mar/requirements/?branch=master
-
-.. |coveralls| image:: https://coveralls.io/repos/mozilla/build-mar/badge.svg?branch=master&service=github
-    :alt: Coverage Status
-    :target: https://coveralls.io/r/mozilla/build-mar
 
 .. |codecov| image:: https://codecov.io/github/mozilla/build-mar/coverage.svg?branch=master
     :alt: Coverage Status
@@ -107,7 +98,7 @@ Installation
 Documentation
 =============
 
-https://mar.readthedocs.io/
+https://mar.readthedocs.io/en/latest/
 
 Development
 ===========
