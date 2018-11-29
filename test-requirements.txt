@@ -136,10 +136,9 @@ more-itertools==4.3.0 \
     --hash=sha256:c476b5d3a34e12d40130bc2f935028b5f636df8f372dc2c1c01dc19681b2039e \
     --hash=sha256:fcbfeaea0be121980e15bc97b3817b5202ca73d0eae185b4550cbfce2a3ebb3d \
     # via pytest
-pathlib2==2.3.2 \
-    --hash=sha256:8eb170f8d0d61825e09a95b38be068299ddeda82f35e96c3301a8a5e7604cb83 \
-    --hash=sha256:d1aa2a11ba7b8f7b21ab852b1fb5afb277e1bb99d5dfc663380b5015c0d80c5a \
-    # via pytest
+pathlib2==2.3.3 \
+    --hash=sha256:5887121d7f7df3603bca2f710e7219f3eca0eb69e0b7cc6e0a022e155ac931a7 \
+    --hash=sha256:25199318e8cc3c25dcb45cbe084cc061051336d5a9ea2a12448d3d8cb748f742    # via pytest
 pbr==5.1.0 \
     --hash=sha256:8fc938b1123902f5610b06756a31b1e6febf0d105ae393695b0c9d4244ed2910 \
     --hash=sha256:f20ec0abbf132471b68963bb34d9c78e603a5cf9e24473f14358e66551d47475 \
